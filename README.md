@@ -1,0 +1,1 @@
+A few email utilities with an mbox iterator that is faster than Python's because it doesn't create a table of contents.
