@@ -72,3 +72,9 @@ def search_mbox(mbox_path, search_pattern, ignore_case=True):
             else:
                 print(msg.get_payload())
             print("-"*50)
+
+# one line summary for all emails
+def extract_one_line_summary(mbox_path):   
+    for message in MboxIterator(mbox_path):
+        print("%s\t%s\t%s" % (message['From'], message['Subject'], message['Date']))
+        
