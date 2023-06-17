@@ -77,4 +77,12 @@ def search_mbox(mbox_path, search_pattern, ignore_case=True):
 def extract_one_line_summary(mbox_path):   
     for message in MboxIterator(mbox_path):
         print("%s\t%s\t%s" % (message['From'], message['Subject'], message['Date']))
-        
+
+# extract email addresses from mbox file.        
+def extract_addresses(mbox_filename):
+    for message in MboxIterator(mbox_filename):
+        # Extract addresses from 'From', 'To', 'Cc' and 'Bcc' fields.
+        for header in ['from', 'to', 'cc', 'bcc']:
+            if message[header]:
+                for display_name, addr in email.utils.getaddresses([message[header]]):
+                    print(f"{display_name} <{addr}>")
